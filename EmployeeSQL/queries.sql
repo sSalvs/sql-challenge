@@ -10,7 +10,7 @@ SELECT * FROM dept_manager;
 
 -- 1. List the following details of each employee: employee number, last name, first name, sex, and salary.
 CREATE VIEW Question_1 AS
-SELECT employees.emp_no, employees.last_name, employees.first_name, employees.sex, salaries.salary
+SELECT employees.emp_no AS "employee number", employees.last_name AS "last name", employees.first_name AS "first name", employees.sex AS "sex", salaries.salary AS "salary"
 FROM employees 
 INNER JOIN salaries ON 
 employees.emp_no = salaries.salary;
@@ -18,7 +18,7 @@ employees.emp_no = salaries.salary;
 -- 2. List first name, last name, and hire date for employees who were hired in 1986.
 
 CREATE VIEW Question_2 AS
-SELECT employees.first_name, employees.last_name, employees.hire_date
+SELECT employees.first_name AS "first name", employees.last_name AS "last name", employees.hire_date AS "hire date"
 FROM employees
 WHERE hire_date BETWEEN '1986-01-01' AND '1986-12-31'
 ORDER BY hire_date;
@@ -28,29 +28,29 @@ ORDER BY hire_date;
 -- the manager's employee number, last name, first name.
 
 CREATE VIEW Question_3 AS
-SELECT dept_manager.dept_no,
-	departments.dept_name,
-	employees.emp_no, 
-	employees.last_name, 
-	employees.first_name
+SELECT dept_manager.dept_no AS "department number",
+	departments.dept_name AS "department name",
+	employees.emp_no AS "managers employee number", 
+	employees.last_name AS "last name", 
+	employees.first_name AS "first name"
 FROM employees
 INNER JOIN dept_manager on 
 employees.emp_no = dept_manager.emp_no
 INNER JOIN departments ON
-dept_manager.dept_no = departments.dept_no
+dept_manager.dept_no = departments.dept_no;
 
 -- 4. List the department of each employee with the following information: employee number, last name, first name, and department name.
 
 CREATE VIEW Question_4 AS
-SELECT employees.emp_no, 
-	employees.last_name, 
-	employees.first_name,
-	departments.dept_name
+SELECT employees.emp_no AS "employee number", 
+	employees.last_name AS "last name", 
+	employees.first_name AS "first name",
+	departments.dept_name AS "department name"
 FROM employees
 INNER JOIN dept_emp on 
 employees.emp_no = dept_emp.emp_no
 INNER JOIN departments ON
-dept_emp.dept_no = departments.dept_no
+dept_emp.dept_no = departments.dept_no;
 
 -- 5. List first name, last name, and sex for employees whose first name is "Hercules" and last names begin with "B."
 
@@ -58,14 +58,15 @@ CREATE VIEW Question_5 AS
 SELECT employees.first_name, employees.last_name, employees.sex
 FROM employees
 WHERE first_name = 'Hercules' AND last_name LIKE 'B%'
+ORDER BY last_name;
 
 -- 6. List all employees in the Sales department, including their employee number, last name, first name, and department name.
 
 CREATE VIEW Question_6 AS	
-SELECT employees.emp_no, 
-	employees.last_name, 
-	employees.first_name,
-	departments.dept_name
+SELECT employees.emp_no AS "employee number", 
+	employees.last_name AS "last name", 
+	employees.first_name AS "first name",
+	departments.dept_name AS "department name"
 FROM employees
 INNER JOIN dept_emp on 
 employees.emp_no = dept_emp.emp_no
@@ -76,10 +77,10 @@ WHERE dept_name = 'Sales'
 -- 7. List all employees in the Sales and Development departments, including their employee number, last name, first name, and department name.
 
 CREATE VIEW Question_7 AS
-SELECT employees.emp_no, 
-	employees.last_name, 
-	employees.first_name,
-	departments.dept_name
+SELECT employees.emp_no AS "employee number", 
+	employees.last_name AS "last name", 
+	employees.first_name AS "first name",
+	departments.dept_name AS "department name"
 FROM employees
 INNER JOIN dept_emp on 
 employees.emp_no = dept_emp.emp_no

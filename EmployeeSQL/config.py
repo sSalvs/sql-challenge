@@ -1,1 +1,3 @@
-username = "postgres"
+# Password
+password = "postgres"
+
